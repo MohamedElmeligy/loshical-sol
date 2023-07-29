@@ -30,7 +30,7 @@ class AssetManager {
         5,
         (index) => OptionModel(
           id: index + 1,
-          assetType: AssetType.question,
+          assetType: AssetType.answer,
           isCorrect: index + 1 == 5, // TODO: update the logic
           isHidden: false, // TODO: update the logic
         ),
