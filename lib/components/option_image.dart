@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:loshical/components/hugged_child.dart';
 
-class QuestionImage extends StatelessWidget {
-  const QuestionImage({super.key, required this.assetPath});
+class OptionImage extends StatelessWidget {
+  const OptionImage({super.key, required this.assetPath});
   final String assetPath;
   @override
   Widget build(BuildContext context) {
