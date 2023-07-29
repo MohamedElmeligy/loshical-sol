@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:loshical/models/question_model/question_model.dart';
-import 'package:loshical/modules/questions_module/questions.dart';
+import 'package:loshical/components/option_image.dart';
+import 'package:loshical/models/models.dart';
+import 'package:loshical/utils/assets.dart';
 
-class QuestionView extends HookConsumerWidget {
-  const QuestionView({super.key, required this.question});
+class QuestionOptionsView extends HookConsumerWidget {
+  const QuestionOptionsView({super.key, required this.question, this.onAccept});
   final QuestionModel question;
+  final Function(Object?)? onAccept;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isCorrect = useState<bool?>(null);
 
     return Wrap(
-      children: question.options
+      children: question.questionOptions
           .map(
             (e) => e.isHidden
                 ? DragTarget(
@@ -28,17 +30,24 @@ class QuestionView extends HookConsumerWidget {
                             width: 2,
                           ),
                         ),
-                        child: QuestionImage(
-                          assetPath: e.imagePath,
+                        child: OptionImage(
+                          assetPath: AssetManager.path(
+                            id: e.id,
+                            assetType: e.assetType,
+                          ),
                         ),
                       );
                     },
                     onLeave: (_) => isCorrect.value = null,
-                    onWillAccept: (e) =>
-                        isCorrect.value = e == question.correctAnswer,
+                    onAccept: onAccept,
+                    onMove: (dragable) => isCorrect.value =
+                        (dragable.data as OptionModel).isCorrect,
                   )
-                : QuestionImage(
-                    assetPath: e.imagePath,
+                : OptionImage(
+                    assetPath: AssetManager.path(
+                      id: e.id,
+                      assetType: e.assetType,
+                    ),
                   ),
           )
           .toList(),
