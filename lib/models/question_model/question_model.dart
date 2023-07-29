@@ -8,9 +8,8 @@ part 'question_model.freezed.dart';
 @freezed
 class QuestionModel with _$QuestionModel {
   factory QuestionModel({
-    required List<OptionModel> options,
-    required List<String> answers,
-    required String correctAnswer,
+    required List<OptionModel> questionOptions,
+    required List<OptionModel> answerOptions,
   }) = _QuestionModel;
 	
 }

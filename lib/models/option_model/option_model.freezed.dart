@@ -16,8 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$OptionModel {
-  String get imagePath => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  AssetType get assetType => throw _privateConstructorUsedError;
   bool get isHidden => throw _privateConstructorUsedError;
+  bool get isCorrect => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $OptionModelCopyWith<OptionModel> get copyWith =>
@@ -30,7 +32,7 @@ abstract class $OptionModelCopyWith<$Res> {
           OptionModel value, $Res Function(OptionModel) then) =
       _$OptionModelCopyWithImpl<$Res, OptionModel>;
   @useResult
-  $Res call({String imagePath, bool isHidden});
+  $Res call({int id, AssetType assetType, bool isHidden, bool isCorrect});
 }
 
 /// @nodoc
@@ -46,17 +48,27 @@ class _$OptionModelCopyWithImpl<$Res, $Val extends OptionModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? imagePath = null,
+    Object? id = null,
+    Object? assetType = null,
     Object? isHidden = null,
+    Object? isCorrect = null,
   }) {
     return _then(_value.copyWith(
-      imagePath: null == imagePath
-          ? _value.imagePath
-          : imagePath // ignore: cast_nullable_to_non_nullable
-              as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      assetType: null == assetType
+          ? _value.assetType
+          : assetType // ignore: cast_nullable_to_non_nullable
+              as AssetType,
       isHidden: null == isHidden
           ? _value.isHidden
           : isHidden // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isCorrect: null == isCorrect
+          ? _value.isCorrect
+          : isCorrect // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -70,7 +82,7 @@ abstract class _$$_OptionModelCopyWith<$Res>
       __$$_OptionModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String imagePath, bool isHidden});
+  $Res call({int id, AssetType assetType, bool isHidden, bool isCorrect});
 }
 
 /// @nodoc
@@ -84,17 +96,27 @@ class __$$_OptionModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? imagePath = null,
+    Object? id = null,
+    Object? assetType = null,
     Object? isHidden = null,
+    Object? isCorrect = null,
   }) {
     return _then(_$_OptionModel(
-      imagePath: null == imagePath
-          ? _value.imagePath
-          : imagePath // ignore: cast_nullable_to_non_nullable
-              as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      assetType: null == assetType
+          ? _value.assetType
+          : assetType // ignore: cast_nullable_to_non_nullable
+              as AssetType,
       isHidden: null == isHidden
           ? _value.isHidden
           : isHidden // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isCorrect: null == isCorrect
+          ? _value.isCorrect
+          : isCorrect // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -103,16 +125,24 @@ class __$$_OptionModelCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_OptionModel implements _OptionModel {
-  _$_OptionModel({required this.imagePath, required this.isHidden});
+  _$_OptionModel(
+      {required this.id,
+      required this.assetType,
+      required this.isHidden,
+      required this.isCorrect});
 
   @override
-  final String imagePath;
+  final int id;
+  @override
+  final AssetType assetType;
   @override
   final bool isHidden;
+  @override
+  final bool isCorrect;
 
   @override
   String toString() {
-    return 'OptionModel(imagePath: $imagePath, isHidden: $isHidden)';
+    return 'OptionModel(id: $id, assetType: $assetType, isHidden: $isHidden, isCorrect: $isCorrect)';
   }
 
   @override
@@ -120,14 +150,18 @@ class _$_OptionModel implements _OptionModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_OptionModel &&
-            (identical(other.imagePath, imagePath) ||
-                other.imagePath == imagePath) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.assetType, assetType) ||
+                other.assetType == assetType) &&
             (identical(other.isHidden, isHidden) ||
-                other.isHidden == isHidden));
+                other.isHidden == isHidden) &&
+            (identical(other.isCorrect, isCorrect) ||
+                other.isCorrect == isCorrect));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, imagePath, isHidden);
+  int get hashCode =>
+      Object.hash(runtimeType, id, assetType, isHidden, isCorrect);
 
   @JsonKey(ignore: true)
   @override
@@ -138,13 +172,19 @@ class _$_OptionModel implements _OptionModel {
 
 abstract class _OptionModel implements OptionModel {
   factory _OptionModel(
-      {required final String imagePath,
-      required final bool isHidden}) = _$_OptionModel;
+      {required final int id,
+      required final AssetType assetType,
+      required final bool isHidden,
+      required final bool isCorrect}) = _$_OptionModel;
 
   @override
-  String get imagePath;
+  int get id;
+  @override
+  AssetType get assetType;
   @override
   bool get isHidden;
+  @override
+  bool get isCorrect;
   @override
   @JsonKey(ignore: true)
   _$$_OptionModelCopyWith<_$_OptionModel> get copyWith =>

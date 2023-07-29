@@ -16,9 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$QuestionModel {
-  List<OptionModel> get options => throw _privateConstructorUsedError;
-  List<String> get answers => throw _privateConstructorUsedError;
-  String get correctAnswer => throw _privateConstructorUsedError;
+  List<OptionModel> get questionOptions => throw _privateConstructorUsedError;
+  List<OptionModel> get answerOptions => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $QuestionModelCopyWith<QuestionModel> get copyWith =>
@@ -32,7 +31,7 @@ abstract class $QuestionModelCopyWith<$Res> {
       _$QuestionModelCopyWithImpl<$Res, QuestionModel>;
   @useResult
   $Res call(
-      {List<OptionModel> options, List<String> answers, String correctAnswer});
+      {List<OptionModel> questionOptions, List<OptionModel> answerOptions});
 }
 
 /// @nodoc
@@ -48,23 +47,18 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? options = null,
-    Object? answers = null,
-    Object? correctAnswer = null,
+    Object? questionOptions = null,
+    Object? answerOptions = null,
   }) {
     return _then(_value.copyWith(
-      options: null == options
-          ? _value.options
-          : options // ignore: cast_nullable_to_non_nullable
+      questionOptions: null == questionOptions
+          ? _value.questionOptions
+          : questionOptions // ignore: cast_nullable_to_non_nullable
               as List<OptionModel>,
-      answers: null == answers
-          ? _value.answers
-          : answers // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      correctAnswer: null == correctAnswer
-          ? _value.correctAnswer
-          : correctAnswer // ignore: cast_nullable_to_non_nullable
-              as String,
+      answerOptions: null == answerOptions
+          ? _value.answerOptions
+          : answerOptions // ignore: cast_nullable_to_non_nullable
+              as List<OptionModel>,
     ) as $Val);
   }
 }
@@ -78,7 +72,7 @@ abstract class _$$_QuestionModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<OptionModel> options, List<String> answers, String correctAnswer});
+      {List<OptionModel> questionOptions, List<OptionModel> answerOptions});
 }
 
 /// @nodoc
@@ -92,23 +86,18 @@ class __$$_QuestionModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? options = null,
-    Object? answers = null,
-    Object? correctAnswer = null,
+    Object? questionOptions = null,
+    Object? answerOptions = null,
   }) {
     return _then(_$_QuestionModel(
-      options: null == options
-          ? _value._options
-          : options // ignore: cast_nullable_to_non_nullable
+      questionOptions: null == questionOptions
+          ? _value._questionOptions
+          : questionOptions // ignore: cast_nullable_to_non_nullable
               as List<OptionModel>,
-      answers: null == answers
-          ? _value._answers
-          : answers // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      correctAnswer: null == correctAnswer
-          ? _value.correctAnswer
-          : correctAnswer // ignore: cast_nullable_to_non_nullable
-              as String,
+      answerOptions: null == answerOptions
+          ? _value._answerOptions
+          : answerOptions // ignore: cast_nullable_to_non_nullable
+              as List<OptionModel>,
     ));
   }
 }
@@ -117,34 +106,30 @@ class __$$_QuestionModelCopyWithImpl<$Res>
 
 class _$_QuestionModel implements _QuestionModel {
   _$_QuestionModel(
-      {required final List<OptionModel> options,
-      required final List<String> answers,
-      required this.correctAnswer})
-      : _options = options,
-        _answers = answers;
+      {required final List<OptionModel> questionOptions,
+      required final List<OptionModel> answerOptions})
+      : _questionOptions = questionOptions,
+        _answerOptions = answerOptions;
 
-  final List<OptionModel> _options;
+  final List<OptionModel> _questionOptions;
   @override
-  List<OptionModel> get options {
-    if (_options is EqualUnmodifiableListView) return _options;
+  List<OptionModel> get questionOptions {
+    if (_questionOptions is EqualUnmodifiableListView) return _questionOptions;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_options);
+    return EqualUnmodifiableListView(_questionOptions);
   }
 
-  final List<String> _answers;
+  final List<OptionModel> _answerOptions;
   @override
-  List<String> get answers {
-    if (_answers is EqualUnmodifiableListView) return _answers;
+  List<OptionModel> get answerOptions {
+    if (_answerOptions is EqualUnmodifiableListView) return _answerOptions;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_answers);
+    return EqualUnmodifiableListView(_answerOptions);
   }
-
-  @override
-  final String correctAnswer;
 
   @override
   String toString() {
-    return 'QuestionModel(options: $options, answers: $answers, correctAnswer: $correctAnswer)';
+    return 'QuestionModel(questionOptions: $questionOptions, answerOptions: $answerOptions)';
   }
 
   @override
@@ -152,18 +137,17 @@ class _$_QuestionModel implements _QuestionModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_QuestionModel &&
-            const DeepCollectionEquality().equals(other._options, _options) &&
-            const DeepCollectionEquality().equals(other._answers, _answers) &&
-            (identical(other.correctAnswer, correctAnswer) ||
-                other.correctAnswer == correctAnswer));
+            const DeepCollectionEquality()
+                .equals(other._questionOptions, _questionOptions) &&
+            const DeepCollectionEquality()
+                .equals(other._answerOptions, _answerOptions));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_options),
-      const DeepCollectionEquality().hash(_answers),
-      correctAnswer);
+      const DeepCollectionEquality().hash(_questionOptions),
+      const DeepCollectionEquality().hash(_answerOptions));
 
   @JsonKey(ignore: true)
   @override
@@ -174,16 +158,13 @@ class _$_QuestionModel implements _QuestionModel {
 
 abstract class _QuestionModel implements QuestionModel {
   factory _QuestionModel(
-      {required final List<OptionModel> options,
-      required final List<String> answers,
-      required final String correctAnswer}) = _$_QuestionModel;
+      {required final List<OptionModel> questionOptions,
+      required final List<OptionModel> answerOptions}) = _$_QuestionModel;
 
   @override
-  List<OptionModel> get options;
+  List<OptionModel> get questionOptions;
   @override
-  List<String> get answers;
-  @override
-  String get correctAnswer;
+  List<OptionModel> get answerOptions;
   @override
   @JsonKey(ignore: true)
   _$$_QuestionModelCopyWith<_$_QuestionModel> get copyWith =>
