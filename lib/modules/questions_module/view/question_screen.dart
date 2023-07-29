@@ -1,16 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:loshical/models/models.dart';
+import 'package:loshical/modules/questions_module/controller/questions_controller.dart';
 import 'package:loshical/modules/questions_module/questions.dart';
 import 'package:loshical/modules/questions_module/widgets/answer_options_widget.dart';
 import 'package:loshical/modules/questions_module/widgets/question_options_widget.dart';
 import 'package:loshical/utils/assets.dart';
 
-class QuestionScreen extends StatelessWidget {
+class QuestionScreen extends ConsumerWidget {
   const QuestionScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen<AsyncValue<OptionModel?>>(resultProvider, (previous, current) {
+      if ((previous?.asData?.value == null)) {
+        String msg = current.asData?.value?.isCorrect ?? false
+            ? 'Congratulations you are answer was corrent'
+            : 'Game Over';
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(msg),
+          ),
+        );
+      }
+    });
     return Scaffold(
       appBar: AppBar(
         title: const Text('Loshical'),
@@ -38,7 +52,8 @@ class QuestionScreen extends StatelessWidget {
               QuestionOptionsView(
                 question: AssetManager.questions.first,
                 onAccept: (e) {
-                  String id = (e as OptionModel).id.toString();
+                  ref.read(resultProvider.notifier).setResult(e as OptionModel);
+                  String id = e.id.toString();
                   context.goNamed(
                     'result',
                     pathParameters: {'id': id},

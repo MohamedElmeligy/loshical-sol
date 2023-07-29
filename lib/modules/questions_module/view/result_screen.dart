@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:loshical/components/components.dart';
+import 'package:loshical/modules/questions_module/controller/questions_controller.dart';
+import 'package:loshical/utils/assets.dart';
 
 class ResultScreen extends ConsumerWidget {
   const ResultScreen({super.key, required this.answerId});
@@ -13,12 +16,18 @@ class ResultScreen extends ConsumerWidget {
         title: const Text('Result'),
       ),
       body: WillPopScope(
-        onWillPop: (){
+        onWillPop: () {
           context.goNamed('question');
+          ref.read(resultProvider.notifier).resetResult();
           return Future.value(false);
         },
-        child: const Center(
-          child: Text('Result'),
+        child: Center(
+          child: OptionImage(
+            assetPath: AssetManager.path(
+              id: answerId,
+              assetType: AssetType.answer,
+            ),
+          ),
         ),
       ),
     );
