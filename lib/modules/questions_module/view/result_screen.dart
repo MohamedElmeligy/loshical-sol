@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:loshical/components/components.dart';
 import 'package:loshical/modules/questions_module/controller/questions_controller.dart';
@@ -17,7 +16,6 @@ class ResultScreen extends ConsumerWidget {
       ),
       body: WillPopScope(
         onWillPop: () {
-          context.goNamed('question');
           ref.read(resultProvider.notifier).resetResult();
           return Future.value(false);
         },
