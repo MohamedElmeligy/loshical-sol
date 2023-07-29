@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:loshical/models/question_model/question_model.dart';
+import 'package:go_router/go_router.dart';
+import 'package:loshical/models/models.dart';
 import 'package:loshical/modules/questions_module/questions.dart';
-import 'package:loshical/modules/questions_module/widgets/question_widget.dart';
+import 'package:loshical/modules/questions_module/widgets/answer_options_widget.dart';
+import 'package:loshical/modules/questions_module/widgets/question_options_widget.dart';
 import 'package:loshical/utils/assets.dart';
 
 class QuestionScreen extends StatelessWidget {
@@ -33,25 +35,20 @@ class QuestionScreen extends StatelessWidget {
             children: [
               const Text('Choose the image that completes the pattern: '),
               const SizedBox(height: 16),
-              QuestionView(
-                question: QuestionModel(
-                  options: AssetManager.questionPaths,
-                  answers: AssetManager.answerPaths,
-                  correctAnswer: AssetManager.answerPaths.last, // TODO: update correct answer logic
-                ),
+              QuestionOptionsView(
+                question: AssetManager.questions.first,
+                onAccept: (e) {
+                  String id = (e as OptionModel).id.toString();
+                  context.goNamed(
+                    'result',
+                    pathParameters: {'id': id},
+                  );
+                },
               ),
               const Spacer(),
               const Text('Which of the shapes below continues the sequence'),
               const SizedBox(height: 16),
-              Wrap(
-                children: AssetManager.answerPaths
-                    .map(
-                      (e) => AnswerImage(
-                        assetPath: e,
-                      ),
-                    )
-                    .toList(),
-              ),
+              QuestionAnswersView(question: AssetManager.questions.first),
               const SizedBox(height: 42),
             ],
           ),
