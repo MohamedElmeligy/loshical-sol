@@ -13,6 +13,10 @@ class ResultScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Result'),
+        leading: IconButton(
+          onPressed: ref.read(resultProvider.notifier).resetResult,
+          icon: const Icon(Icons.arrow_back),
+        ),
       ),
       body: WillPopScope(
         onWillPop: () {

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loshical/modules/questions_module/controller/questions_controller.dart';
@@ -12,10 +10,9 @@ final router = Provider<GoRouter>(
   (ref) => GoRouter(
     navigatorKey: _rootNavigatorKey,
     redirect: (context, state) {
-      var result = ref.read(navigatorProvider);
-      log(result.value.toString());
-      if (result.value != null) {
-        String msg = result.value!.isCorrect
+      var result = ref.read(navigatorProvider).value;
+      if (result != null) {
+        String msg = result.isCorrect
             ? 'Congratulations you are answer was corrent'
             : 'Game Over';
         ScaffoldMessenger.of(context).showSnackBar(
@@ -23,7 +20,7 @@ final router = Provider<GoRouter>(
             content: Text(msg),
           ),
         );
-        return '/result${result.value?.id ?? -1}';
+        return '/result${result.id}';
       }
       return '/';
     },
