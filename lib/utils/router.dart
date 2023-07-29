@@ -11,7 +11,8 @@ final router = Provider<GoRouter>(
     navigatorKey: _rootNavigatorKey,
     redirect: (context, state) {
       var result = ref.read(navigatorProvider).value;
-      if (result != null) {
+      final isHome = state.fullPath == '/';
+      if (result != null && isHome) {
         String msg = result.isCorrect
             ? 'Congratulations you are answer was corrent'
             : 'Game Over';
@@ -22,9 +23,12 @@ final router = Provider<GoRouter>(
         );
         return '/result${result.id}';
       }
-      return '/';
+      if (result == null && !isHome) {
+        return '/';
+      }
+      return null;
     },
-    refreshListenable: ref.watch(navigatorProvider),
+    refreshListenable: ref.read(navigatorProvider),
     routes: [
       GoRoute(
         name: 'question',
