@@ -1,4 +1,5 @@
-import 'package:loshical/models/option_model/option_model.dart';
+
+import 'package:loshical/models/models.dart';
 
 enum AssetType {
   question('q'),
@@ -15,14 +16,30 @@ class AssetManager {
 
   static const howto = 'assets/howto.png';
 
-  static List<OptionModel> get questionPaths => List.generate(
+  static List<OptionModel> get questionOptions => List.generate(
         5,
         (index) => OptionModel(
-          imagePath: path(id: index + 1, assetType: AssetType.question),
+          id: index + 1,
+          assetType: AssetType.question,
+          isCorrect: false, // TODO: update the logic
           isHidden: index == 1, // TODO: update the logic
         ),
       );
 
-  static List<String> get answerPaths => List.generate(
-      5, (index) => path(id: index + 1, assetType: AssetType.answer));
+  static List<OptionModel> get questionAnswers => List.generate(
+        5,
+        (index) => OptionModel(
+          id: index + 1,
+          assetType: AssetType.question,
+          isCorrect: index + 1 == 5, // TODO: update the logic
+          isHidden: false, // TODO: update the logic
+        ),
+      );
+
+  static List<QuestionModel> get questions => [
+        QuestionModel(
+          questionOptions: questionOptions,
+          answerOptions: questionAnswers,
+        ),
+      ];
 }
